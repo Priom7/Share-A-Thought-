@@ -1,25 +1,53 @@
 import React from "react";
+import {connect} from 'react-redux'
+import { firestoreConnect} from 'react-redux-firebase'
+import {compose} from 'redux'
 
 function PostDetails(props) {
-  const id = props.match.params.id;
-  return (
-    <div className="container section post-details">
-      <div className="card z-depth-0-post-details">
-        <div className="card-content">
-          <span className="card-title">Project Title - {id} </span>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-            quisquam illum, earum culpa soluta iure aut id rerum modi nobis amet
-            architecto, recusandae officiis consectetur quaerat corporis
-            cupiditate quidem tempora!
-          </p>
-        </div>
-        <div className="card-action grey lighten-4 grey-text">
-          <div>Posted By Priom</div>
-          <div>25th January, 9.58pm</div>
+  
+  const {post} = props; 
+  if(post){
+    return (
+      <div className="container section post-details">
+        <div className="card z-depth-0-post-details">
+          <div className="card-content">
+            <span className="card-title">{post.title} </span>
+            <p>
+              {post.content}
+            </p>
+          </div>
+          <div className="card-action grey lighten-4 grey-text">
+    <div>Posted By {post.authorFirstName} {post.authorLastName}</div>
+            <div>date</div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+
+  }
+  else{
+    return(
+     <div className="container center">
+       <p>Loading Post....</p>
+     </div>
+    )
+  }
+  
 }
-export default PostDetails;
+
+const mapStateToProps = (state, ownProps)=>{
+  // console.log(state)
+  const id = ownProps.match.params.id
+  const posts = state.firestore.data.posts
+  const post = posts ? posts[id] : null
+  return{
+  
+  post : post
+  }
+}
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'posts' }
+  ])
+) (PostDetails);
