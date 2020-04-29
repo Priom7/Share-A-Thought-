@@ -7,6 +7,7 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp"
 import CreatePost from "./components/post/CreatePost"
 
+
 class App extends Component {
   render() {
     return (

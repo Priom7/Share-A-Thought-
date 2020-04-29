@@ -1,9 +1,17 @@
 import React from "react";
 
+
+const mystyle = {
+  color: "white",
+  backgroundColor: "#080808",
+  padding: "10px",
+  fontFamily: "Arial"
+};
+
 const Notifications = () => {
   return (
     <div>
-      <p>Notifications</p>
+      <p style={mystyle}>Notifications</p>
     </div>
   );
 };
