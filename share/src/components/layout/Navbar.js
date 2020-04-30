@@ -24,9 +24,9 @@ const mystyle = {
 
 
 const Navbar = (props) => {
-  const {auth} = props;
+  const {auth, profile} = props;
   // console.log(auth);
-  const links = auth.uid ? <SignedInlinks/> : <SignedOutlinks/>
+  const links = auth.uid ? <SignedInlinks profile={profile}/> : <SignedOutlinks/>
   return (
     <nav style={mystyle} className="nav-wrapper ">
       <div className="container">
@@ -44,9 +44,11 @@ const Navbar = (props) => {
  };
 
 const mapStateToProps = (state) =>{
+  console.log(state)
  
   return{
-    auth : state.firebase.auth
+    auth : state.firebase.auth,
+    profile : state.firebase.profile
 
   }
 }

@@ -11,7 +11,7 @@ var config = {
     storageBucket: "share-a-thought.appspot.com",
     messagingSenderId: "444444331335",
     appId: "1:444444331335:web:e76a5e998f7492939ed062",
-    measurementId: "G-XGE0RQKQVF"
+    measurementId: "G-XGE0RQKQVF",
   };
 firebase.initializeApp(config);
 firebase.firestore().settings({ timestampsInSnapshots: true });

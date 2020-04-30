@@ -1,4 +1,5 @@
 import React from "react";
+import moment from 'moment'
 
 
 const mystyle = {
@@ -16,7 +17,8 @@ const PostSummary = ({post}) => {
       <div className="card-content grey-text text-darken-3">
         <span className="card-title">{post.title}</span>
         <p>{post.content}</p>
-        <p className="gray-text">25th, January, 9.30am</p>          
+  <p>Posted By {post.authorFirstName} {post.authorLastName}</p>
+        <p className="gray-text">{moment(post.createdAt.toDate()).calendar()}</p>          
       </div>
     </div>
   );

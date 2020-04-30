@@ -22,14 +22,20 @@ const store = createStore(
   ),
 );
 
+const config = {
+  ...fbConfig,
+  userProfile: 'users',
+  useFirestoreForProfile: true
+  // And other config options
+  };
+  
+
 
 const rrfProps = {
   firebase,
-  config: fbConfig,
+  config,
   dispatch: store.dispatch,
   createFirestoreInstance,
-  userProfile: 'users',
-  useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
   attachAuthIsReady: true
 };
 
@@ -41,10 +47,13 @@ function AuthIsLoaded({ children }) {
 }
 
 
-ReactDOM.render(<Provider store={store}><ReactReduxFirebaseProvider {...rrfProps}>
-  <AuthIsLoaded>
-      <App />
-  </AuthIsLoaded></ReactReduxFirebaseProvider>
+ReactDOM.render(
+<Provider store={store}>
+    <ReactReduxFirebaseProvider {...rrfProps}>
+        <AuthIsLoaded>
+            <App />
+        </AuthIsLoaded>
+    </ReactReduxFirebaseProvider>
 </Provider>, document.getElementById('root'));
 
 serviceWorker.unregister();
