@@ -1,4 +1,6 @@
 import React from "react";
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 //navlink for active link
 import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux'
@@ -8,13 +10,13 @@ const SignedInLinks = (props) => {
   return (
     <ul className="right">
       <li>
-        <NavLink to="/create">New Post</NavLink>
+        <NavLink to="/create"><AddCircleOutlineIcon></AddCircleOutlineIcon> New Post</NavLink>
       </li>
       <li>
-        <a href="/" onClick ={props.signOut}>Log Out</a>
+        <a href="/" onClick ={props.signOut}><ExitToAppIcon fontSize="small"></ExitToAppIcon> Log Out</a>
       </li>
       <li>
-        <NavLink to="/" className="btn btn-floating pink lighten-1 ">
+        <NavLink to="/" className="btn btn-floating blue lighten-1 ">
           {props.profile.initial}
         </NavLink>
       </li>

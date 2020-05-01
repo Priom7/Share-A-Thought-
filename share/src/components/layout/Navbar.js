@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SignedInlinks from "./SignedInLinks";
 import SignedOutlinks from "./SignedOutLinks";
 import {connect } from 'react-redux'
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 
 const mystyle = {
@@ -31,7 +32,7 @@ const Navbar = (props) => {
     <nav style={mystyle} className="nav-wrapper ">
       <div className="container">
         <Link to="/" className="brand-logo">
-          Share A Thought
+         <AccountBoxIcon></AccountBoxIcon> Share A Thought
         </Link>
         { 
 
