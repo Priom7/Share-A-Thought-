@@ -6,6 +6,8 @@ import PostDetails from "./components/post/PostDetails";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp"
 import CreatePost from "./components/post/CreatePost"
+import AllNotifactions from "./components/dashboard/AllNotifications"
+
 
 
 class App extends Component {
@@ -20,6 +22,7 @@ class App extends Component {
             <Route path="/signin" component={SignIn}></Route>
             <Route path="/signup" component={SignUp}></Route>
             <Route path="/create" component={CreatePost}></Route>
+            <Route path="/allnotifications" component={AllNotifactions}></Route>
           </Switch>
         </div>
       </BrowserRouter>

@@ -4,6 +4,7 @@ import SignedInlinks from "./SignedInLinks";
 import SignedOutlinks from "./SignedOutLinks";
 import {connect } from 'react-redux'
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import "./Navbar.css"
 
 
 const mystyle = {
@@ -29,9 +30,9 @@ const Navbar = (props) => {
   // console.log(auth);
   const links = auth.uid ? <SignedInlinks profile={profile}/> : <SignedOutlinks/>
   return (
-    <nav style={mystyle} className="nav-wrapper ">
-      <div className="container">
-        <Link to="/" className="brand-logo">
+    <nav style={mystyle} className="nav-wrapper navbar">
+      <div className="container main pp">
+        <Link to="/" className="brand-logo aa">
          <AccountBoxIcon></AccountBoxIcon> Share A Thought
         </Link>
         { 
@@ -45,7 +46,7 @@ const Navbar = (props) => {
  };
 
 const mapStateToProps = (state) =>{
-  console.log(state)
+  // console.log(state)
  
   return{
     auth : state.firebase.auth,

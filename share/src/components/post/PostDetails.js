@@ -7,9 +7,6 @@ import moment from 'moment'
 
 function PostDetails(props) {
 
-
-    
-  
   const {post, auth} = props; 
   if(!auth.uid){
     return <Redirect to="/signin"></Redirect>
@@ -25,8 +22,8 @@ function PostDetails(props) {
             </p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
-    <div>Posted By {post.authorFirstName} {post.authorLastName}</div>
-    <div>{moment(post.createdAt.toDate()).calendar()}</div>
+            <div>Posted By {post.authorFirstName} {post.authorLastName}</div>
+            <div>{moment(post.createdAt.toDate()).calendar()}</div>
           </div>
         </div>
       </div>
