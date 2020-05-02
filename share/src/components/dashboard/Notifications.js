@@ -6,7 +6,6 @@ import TimerIcon from '@material-ui/icons/Timer';
 import {Link} from 'react-router-dom'
 import './Notification.css'
 import "../layout/Navbar.css"
-import AllNotifications from './AllNotifications';
 
 const Notifications = (props) => {
   const {notifications} = props
@@ -28,19 +27,8 @@ const Notifications = (props) => {
                 </li>
               )
             })}
-          {/* <div className="center">
-          { notifications && notifications.map(item => {
-        return (
-          <Link to={'/item/' + item.id} key={item.id}>See All
-            
-          <AllNotifications item={item}  />
-        
-          </Link>
-        )
-      })} 
-
-          </div> */}
           </ul>
+          <div className="center"><Link to="/allNotifications">See All</Link></div>
         
         </div>
       </div>

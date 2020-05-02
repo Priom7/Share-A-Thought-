@@ -1,27 +1,34 @@
-import React,{ Component } from 'react'
+import React, { Component } from "react";
 import Notifications from "./Notifications";
 import {connect} from "react-redux"
 import {firestoreConnect } from 'react-redux-firebase'
 import {compose } from 'redux'
+import { Redirect } from "react-router-dom";
 
 class AllNotifications extends Component {
   render() {
+    //  console.log(this.props);
+    const { auth, notifications } = this.props;
 
-  const {auth, notifications } = this.props;
-  console.log(this.props)
+    if(!auth.uid){
+      return <Redirect to='/signin'/>
+    }
 
-  return (
-    <div>
+    return (
+      <div className="dashboard container">
+        <div className="row">
 
-<div className="col s12 m5 offset-m1">
-            <Notifications notifications={notifications} />
+          <div className="col s12 m6">
+          <Notifications notifications={notifications} />  
           </div>
-     
 
-    </div>
-  )
-}}
-
+          
+          
+        </div>
+      </div>
+    );
+  }
+}
 const mapStateToProps = (state)=> {
   // console.log(state)
   return{
@@ -33,6 +40,6 @@ const mapStateToProps = (state)=> {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'notifications', limit: 5, orderBy: ['time', 'desc'] }
+    { collection: 'notifications',  orderBy: ['time', 'desc'] }
   ])
 ) (AllNotifications);
