@@ -15,6 +15,7 @@ const mystyle = {
 
 const PostSummary = ({post}) => {
   // console.log(post.title)
+  console.log(post.createdAt)
   return (
     <div style={mystyle} className="card z-depth-0-post-summary post_summary" >
       <div className="card-content grey-text text-darken-3 ">

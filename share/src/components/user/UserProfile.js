@@ -6,14 +6,17 @@ import {Link} from 'react-router-dom'
 import {compose } from 'redux'
 import { Redirect } from "react-router-dom";
 import "./userProfile.css"
+import moment from 'moment'
 
 class UserProfile extends Component {
   render() {
     //  console.log(this.props);
-    const { posts, auth, users } = this.props;
+    const { posts, auth, users, profile } = this.props;
     console.log(auth)
     console.log(users)
     console.log(posts)
+    console.log(profile)
+console.log(auth.createdAt)
 
     if(!auth.uid){
       return <Redirect to='/signin'/>
@@ -35,8 +38,11 @@ class UserProfile extends Component {
           </div>
           <div className="card-content">
           <h1>Your Profile</h1>
+          <h3><span className="btn btn-floating blue lighten-1 center text_title">{profile.initial}</span>  {profile.firstName} {profile.lastName}</h3>
             <span className="card-title activator grey-text text-darken-4"><b>Email: </b>{auth.email}</span>
-            <span className="card-title activator grey-text text-darken-4"><b>Total Posts: </b>{auth.email}</span>
+          
+
+          
            
           </div>
           <div className="card-reveal center">
@@ -48,9 +54,11 @@ class UserProfile extends Component {
         </div>
       
 
-        
+       
             {posts && posts.map(post =>{
               if( auth.uid===post.authoId)
+             
+              
               return(
                 <Link to={'/post/' + post.id} key={post.id}>
 
@@ -75,7 +83,8 @@ const mapStateToProps = (state)=> {
   return{
     posts : state.firestore.ordered.posts,
     auth : state.firebase.auth,
-    users : state.firestore.ordered.users
+    users : state.firestore.ordered.users,
+    profile : state.firebase.profile
   }
 }
 
