@@ -8,14 +8,18 @@ import moment from 'moment'
 function PostDetails(props) {
 
   const {post, auth} = props; 
+  
   if(!auth.uid){
     return <Redirect to="/signin"></Redirect>
   }
   if(post){
+    console.log(post)
     return (
       <div className="container section post-details">
         <div className="card z-depth-0-post-details">
           <div className="card-content">
+          <span className="btn btn-floating blue lighten-1 center text_title">{post.authorFirstName[0]}{post.authorLastName[0]}</span>
+          <hr></hr>
             <span className="card-title">{post.title} </span>
             <p>
               {post.content}
@@ -41,7 +45,8 @@ function PostDetails(props) {
 }
 
 const mapStateToProps = (state, ownProps)=>{
-  // console.log(state)
+   console.log(state)
+   console.log(ownProps)
   const id = ownProps.match.params.id
   const posts = state.firestore.data.posts
   const post = posts ? posts[id] : null
@@ -56,4 +61,4 @@ export default compose(
   firestoreConnect([
     { collection: 'posts' }
   ])
-) (PostDetails);
+)(PostDetails);
