@@ -6,6 +6,10 @@ import {Link} from 'react-router-dom'
 import {compose } from 'redux'
 import { Redirect } from "react-router-dom";
 import "./userProfile.css"
+import {
+  Card, CardImg, CardText, CardBody, CardLink,
+  CardTitle, CardSubtitle, Button, Col, 
+} from 'reactstrap';
 import moment from 'moment'
 
 class UserProfile extends Component {
@@ -25,48 +29,40 @@ console.log(auth.createdAt)
   
 
       return (
-      <div className="dashboard container">
+
+  
+
+      <div >
+
+      <Card style={{ width: '18rem' }} className="profile_card center">
+      <span className="btn btn-floating blue lighten-1 center text_title">{profile.initial}</span>
+        <CardBody>
+          <CardTitle>Your Profile</CardTitle>
+          <CardSubtitle>{profile.firstName} {profile.lastName}</CardSubtitle>
+          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <Button >Edit</Button>
+        </CardBody>
+      </Card>
 
 
-        <div className="card center profile_card">
-          <div className ="card-image waves-effect waves-block waves-light">
-
-        
-            
-       
-        
-          </div>
-          <div className="card-content">
-          <h1>Your Profile</h1>
-          <h3><span className="btn btn-floating blue lighten-1 center text_title">{profile.initial}</span>  {profile.firstName} {profile.lastName}</h3>
-            <span className="card-title activator grey-text text-darken-4"><b>Email: </b>{auth.email}</span>
-          
-
-          
-           
-          </div>
-          <div className="card-reveal center">
-            <span className="card-title grey-text text-darken-4 profile_card">The href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/ma</span>
-            <p></p>
-          </div>
-        
-
-        </div>
       
 
        
             {posts && posts.map(post =>{
               if( auth.uid===post.authoId)
+              console.log(post.length)
+              console.log("post :" ,post)
              
               
               return(
+                <div className="dashboard container" key={post.id}> 
                 <Link to={'/post/' + post.id} key={post.id}>
 
 
                   <PostSummary post={post}  />
                  
                 </Link>
-              
+              </div>
               )
             })}
        
@@ -79,7 +75,8 @@ console.log(auth.createdAt)
   }
 }
 const mapStateToProps = (state)=> {
-   console.log(state)
+   console.log('%c UserProle State :', 'background: #222; color: #bada55', state)
+
   return{
     posts : state.firestore.ordered.posts,
     auth : state.firebase.auth,
