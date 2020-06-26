@@ -8,26 +8,24 @@ class SignUp extends Component {
     email: "",
     password: "",
     firstName: "",
-    lastName: ""
+    lastName: "",
   };
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state);
-    this.props.signUp(this.state)
+    this.props.signUp(this.state);
   };
 
   render() {
+    const { auth, authError } = this.props;
 
-    const {auth, authError } = this.props
-
-    if(auth.uid){
-      return <Redirect to="/"></Redirect>
+    if (auth.uid) {
+      return <Redirect to="/"></Redirect>;
     }
     return (
       <div className="container">
@@ -52,7 +50,7 @@ class SignUp extends Component {
           <div className="input-field">
             <button className="btn green lighten-1 z-depth-0">Sign Up</button>
             <div className="red-text center">
-              {authError ? <p>{authError}</p> : null }
+              {authError ? <p>{authError}</p> : null}
             </div>
           </div>
         </form>
@@ -61,17 +59,17 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProps = (state) =>{
-  return{
+const mapStateToProps = (state) => {
+  return {
     auth: state.firebase.auth,
-    authError : state.auth.authError
-  }
-}
+    authError: state.auth.authError,
+  };
+};
 
-const mapDispatchToProps = (dispatch) =>{
-  return{
-    signUp : (newUser)=> dispatch(signUp(newUser))
-  }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (newUser) => dispatch(signUp(newUser)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps) (SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

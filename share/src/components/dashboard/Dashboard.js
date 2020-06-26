@@ -25,15 +25,15 @@ class Dashboard extends Component {
 
 
         <div className="row">
-        <div className="col s12 m6 l3 offset-m1 user_list">
+        {/* <div className="col s12 m6 l3 offset-m1 user_list">
             <UserList users={ users }></UserList>
-          </div>
+          </div> */}
 
           <div className="col s12 m6">
             <PostList posts = { posts }  />  
           </div>
 
-          <div className="col s12 m6 l3 offset-m1">
+          <div className="col s12 m6 ">
             <Notifications notifications={notifications} />
           </div>
           
